@@ -1,11 +1,9 @@
 const axios = require("axios");
-const url = require('url');
-const chalk = require('chalk');
-const address = require('address');
+
 const ARCHAEIC_URL = process.env.SERVER_URL;
 const PORT = process.env.SERVER_PORT
 const AUTH_TOKEN = 'bearer'
-
+const {foobar} = require("../helpers")
 axios.defaults.headers.common['Authorization'] = `Bearer ${AUTH_TOKEN}`;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
@@ -13,62 +11,7 @@ console.log("NODE SPINNING UP");
 
 
 
-function foobar (protocol, host, port, pathname = '/') {
-  if( port == "80" ){
-  port =""
-  }
-    const formatUrl = hostname =>
-    url.format({
-      protocol,
-      hostname,
-      port,
-      pathname,
-    });
-  const prettyPrintUrl = hostname =>
-    url.format({
-      protocol,
-      hostname,
-      port: chalk.bold(port),
-      pathname,
-    });
 
-  const isUnspecifiedHost = host === '0.0.0.0' || host === '::';
-  let prettyHost, lanUrlForConfig, lanUrlForTerminal;
-  if (isUnspecifiedHost) {
-    prettyHost = 'localhost';
-    try {
-      // This can only return an IPv4 address
-      lanUrlForConfig = address.ip();
-      if (lanUrlForConfig) {
-        // Check if the address is a private ip
-        // https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces
-        if (
-          /^10[.]|^172[.](1[6-9]|2[0-9]|3[0-1])[.]|^192[.]168[.]/.test(
-            lanUrlForConfig
-          )
-        ) {
-          // Address is private, format it for later use
-          lanUrlForTerminal = prettyPrintUrl(lanUrlForConfig);
-        } else {
-          // Address is not private, so we will discard it
-          lanUrlForConfig = undefined;
-        }
-      }
-    } catch (_e) {
-      // ignored
-    }
-  } else {
-    prettyHost = host;
-  }
-  const localUrlForTerminal = prettyPrintUrl(prettyHost);
-  const localUrlForBrowser = formatUrl(prettyHost);
-  return {
-    lanUrlForConfig,
-    lanUrlForTerminal,
-    localUrlForTerminal,
-    localUrlForBrowser,
-  };
-}
 axios({
   method: 'post',
   url: `http://${ARCHAEIC_URL}:${PORT}/analytics/uptime`,
@@ -82,5 +25,6 @@ axios({
 
 })
 .catch(function(e){
+  console.log(PORT,ARCHAEIC_URL);
   console.log(e.code);
 })
