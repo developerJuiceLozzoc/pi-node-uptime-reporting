@@ -1,0 +1,37 @@
+{
+  "name": "pi-node-uptime-reporting",
+  "version": "0.5.0",
+  "description": "using docker containers we can split this pacakge into 2 enviroments",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "node": "node client/",
+    "server": "node server/",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lozzoc/pi-node-uptime-reporting.git"
+  },
+  "keywords": [
+    "docker",
+    "clusters",
+    "nodejs",
+    "express",
+    "axios",
+    "docker-compose"
+  ],
+  "author": "Lozzoc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lozzoc/pi-node-uptime-reporting/issues"
+  },
+  "homepage": "https://github.com/lozzoc/pi-node-uptime-reporting#readme",
+  "dependencies": {
+    "address": "^1.1.2",
+    "axios": "^0.21.4",
+    "body-parser": "^1.19.0",
+    "chalk": "^4.1.2",
+    "express": "^4.17.1",
+    "url": "^0.11.0"
+  }
+}
