@@ -1,0 +1,16 @@
+[Unit]
+Description=client-cron-
+After=network.target
+
+[Service]
+Environment="NODE_NAME=node :q
+PORT=1111  SERVER_PORT=1111 SERVER_URL=10.0.0.74"
+StandardOutput=inherit
+Type=simple
+User=pi
+ExecStart=/usr/src/node-v10.16.3-linux-armv7l/bin/node /home/pi/Documents/code/pi-node-uptime-reporting/index.js
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
