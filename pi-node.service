@@ -3,8 +3,10 @@ Description=client-cron-
 After=network.target
 
 [Service]
-Environment="NODE_NAME=node :q
-PORT=1111  SERVER_PORT=1111 SERVER_URL=10.0.0.74"
+Environment="NODE_NAME=node"
+Environment="PORT=1111"
+Environment="SERVER_PORT=1111" 
+Environment="SERVER_URL=10.0.0.74"
 StandardOutput=inherit
 Type=simple
 User=pi
